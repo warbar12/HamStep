@@ -99,7 +99,7 @@ body{
   justify-content: center;
   height: 67px;
   width: 58px;
-  background: url(/img/Polygon.png)no-repeat;
+  background-repeat: no-repeat;
   background-size: cover;
 }
 .hexagon_logo{
@@ -173,7 +173,8 @@ body{
   outline: none;
   background-color: transparent;
   border: 1px solid #18CFAB;
-  background: url(/img/SearchIcon.png) no-repeat;
+  background-image: url(/img/SearchIcon.png);
+  background-repeat: no-repeat;
   background-size: 22px;
   padding-left: 40px;
   background-position: 10px 50%;
