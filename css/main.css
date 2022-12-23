@@ -77,9 +77,10 @@ body{
 }
 .wraper{
   height: 100vh;
-  background: url(img/mainFon.jpg) center no-repeat;
+  background: url(https://images.squarespace-cdn.com/content/v1/552171fae4b0c878b574ce09/1428290793776-VTZCOKJMTN80WV580G2S/gagilas.jpg?format=2500w) center no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  opacity: 0.85;
 }
 
 .header_container{
