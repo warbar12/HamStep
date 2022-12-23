@@ -77,7 +77,7 @@ body{
 }
 .wraper{
   height: 100vh;
-  background: url(/img/mainFon.jpg) center no-repeat;
+  background: url(img/mainFon.jpg) center no-repeat;
   background-size: cover;
   background-attachment: fixed;
 }

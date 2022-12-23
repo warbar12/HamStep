@@ -78,8 +78,8 @@ amozingLinks.addEventListener('click', event => {
   })
 });
 
+let count = 0;
 function searchForActiveBlock(url){
-  let count = 0;
   _Content.forEach(item =>{
     if(item.classList.contains("active")){
       while(count < 12){
