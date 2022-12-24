@@ -35,7 +35,7 @@ navlist.addEventListener('click', event => {
 })
 
 /* --------------------------------Amazing Work-------------------------------- */
-// добаление картинок + кнопка + прелоадер
+// добаление картинок
 
 const amozingLinks = document.querySelector(".nav_link_block");
 const _Links = [...amozingLinks.children];
@@ -53,7 +53,6 @@ _Content.forEach((item, index) => {
 });
 
 amozingLinks.addEventListener('click', event => {
-  const add = document.querySelectorAll('.galery');
   if(event.target !== amozingLinks){
     _Links.forEach(item => {
         item.classList.remove('active');
@@ -63,23 +62,19 @@ amozingLinks.addEventListener('click', event => {
     _Content.forEach(item => {
       if(item.dataset.set === event.target.dataset.set){
         item.classList.add("active");
+        if(item.children.length < 1){
+          searchForActiveBlock(event.target.dataset.info)
+        }
       } 
       else item.classList.remove('active');
     });
 
   event.target.classList.toggle('active');
-
-  add.forEach(item => {
-    if(item.classList.contains('active')){
-      if(item.children.length < 10){
-        searchForActiveBlock(event.target.dataset.info)
-      }
-    }
-  })
 });
 
-let count = 0;
+
 function searchForActiveBlock(url){
+  let count = 0;
   _Content.forEach(item =>{
     if(item.classList.contains("active")){
       while(count < 12){
@@ -100,54 +95,6 @@ function searchForActiveBlock(url){
 }
 searchForActiveBlock("All")
 
-// работа с кнопкой добаления картинок
-
-function unDisable(){
-  document.querySelector('.preloader').classList.remove('active');
-  loadImg.classList.remove('dis');
-}
-
-
-function heandelAddImg(){
-const activeLinck = document.querySelectorAll('.galery');
-
-activeLinck.forEach(item => {
-
-    if(item.classList.contains('active')){
-      let numberImg = 0;
-
-      function urlImg(){
-        numberImg++;
-        const getUrlImg =  `<div class="galery_mask">
-        <img class="foto" src="./img/dopImg/${numberImg}.jpeg"  alt="${numberImg}.png">
-        <div class="galery_mask_hover">
-        <img class="hover_img" src="./img/icon2.png" alt="icon2.png">
-        <h4 class="info_foto_title">creative design</h4>
-        <p class="info_foto_name">Uploaded Image</p>
-        </div>
-        </div> `;
-        item.insertAdjacentHTML('beforeend', getUrlImg);
-      }
-    };
-    const avtoRun = setInterval(urlImg, 500);
-    setTimeout(() => { clearInterval(avtoRun)}, 6000);
- });
-};
-
-
-const loadImg = document.querySelector('.btn');
-let clicks  = 0;
-loadImg.addEventListener('click', e => {
-  if(e) clicks ++;
-
-  document.querySelector('.preloader').classList.add('active')
-  loadImg.classList.add('dis')
-
-  heandelAddImg()
-  setTimeout(unDisable, 6000);
-
-  if(clicks === 2) loadImg.classList.add('none')
-})
 
 /* --------------------------------Breaking News-------------------------------- */
 let q = 0;
@@ -237,14 +184,125 @@ showSlides(sIndex);
 
 /*--------------------------------------------------------------------------*/
 
-const gread = document.querySelector('.masonry-grid')
-let t =0;
-function o(){
-  while(t < 12){
-    t++;
-    const img = `<img src="./img/bestImages/${t}.jpg" alt="Фото - ${t}">`
-    gread.insertAdjacentHTML("beforeend", img)
+
+const masGred = document.getElementById('mas_gall');
+
+let numberMasonry = 0;
+function addImg(){
+  while(numberMasonry < 23){
+    numberMasonry++;
+    const img = `<div class="item_masonry size4">
+    <img src="./img/bestImages/${numberMasonry}.jpg" alt="bestImages-${numberMasonry}">
+    <div class="masonry_hover">
+        <a href="#">
+          <i class="fa fa-search fa-2" ></i>
+        </a>
+    </div>
+  </div>`
+    masGred.insertAdjacentHTML("beforeend", img)
   }
+  const avtoRun = setInterval(addImg, 500);
+  setTimeout(() => { clearInterval(avtoRun)}, 6000);
+}
+addImg()
+
+/*--------------------------------------------------------------------------*/
+// добаление рабочих кнопок + прелоадер
+const activeLinck = document.querySelectorAll('.galery');
+
+const loadImg = document.querySelectorAll('.btn');
+const firstBtn = loadImg[0];
+const secondBtn = loadImg[1];
+
+const preloader = document.querySelectorAll('.preloader');
+const firstPreloader = preloader[0];
+const secondPreloader = preloader[1];
+
+
+// работа с firstBtn
+let firstBtnClicks = 0;
+
+firstBtn.addEventListener('click', pres =>{
+  firstHeandelAddImg();
+
+  if(pres) firstBtnClicks ++;
+  if(firstBtnClicks === 2) firstBtn.classList.add('none')
+
+  firstPreloader.classList.add('active')
+  firstBtn.classList.add('dis')
+
+  setTimeout(firstUnDisable, 3000);
+});
+
+function firstHeandelAddImg(){
+ 
+  activeLinck.forEach(item => {
+
+    if(item.classList.contains('active')){
+        let numberImg = 0;
+
+        function urlImg(){
+          numberImg++;
+          console.log(numberImg);
+          const getUrlImg =  `<div class="galery_mask">
+          <img class="foto" src="./img/dopImg/${numberImg}.jpeg"  alt="${numberImg}.png">
+          <div class="galery_mask_hover">
+          <img class="hover_img" src="./img/icon2.png" alt="icon2.png">
+          <h4 class="info_foto_title">creative design</h4>
+          <p class="info_foto_name">Uploaded Image</p>
+          </div>
+          </div> `;
+          item.insertAdjacentHTML('beforeend', getUrlImg);
+        };
+      };
+      const avtoRun = setInterval(urlImg, 250);
+      setTimeout(() => { clearInterval(avtoRun)}, 3000);
+    });
+  };
+
+
+// работа с secondBtn
+// let secondBtnClicks  = 0;
+
+// secondBtn.addEventListener('click', pres =>{
+//   if(pres) secondBtnClicks ++;
+
+//   secondPreloader.classList.add('active')
+//   secondBtn.classList.add('dis')
+
+//   secondHeandelAddImg()
+//   setTimeout(secondUnDisable, 6000);
+
+//   const avtoRun = setInterval(secondHeandelAddImg, 500);
+//   setTimeout(() => { clearInterval(avtoRun)}, 6000);
+
+//   if(secondBtnClicks === 2) secondBtn.classList.add('none')
+
+// });
+
+// let secondHeandelAddImgCounter = 0;
+// function secondHeandelAddImg(){
+//   secondHeandelAddImgCounter++;
+
+//   const img = `<div class="item_masonry size4">
+//     <img src="./img/bestImages/${secondHeandelAddImgCounter}.jpg" alt="bestImages-${secondHeandelAddImgCounter}">
+//     <div class="masonry_hover">
+//         <a href="#">
+//           <i class="fa fa-search fa-2" ></i>
+//         </a>
+//     </div>
+//   </div>`
+//   masGred.insertAdjacentHTML("beforeend", img)
+// };
+
+
+// делать кнопку не кликабельной 
+function firstUnDisable(){
+  firstPreloader.classList.remove('active');
+  firstBtn.classList.remove('dis');
 }
 
-o()
+// function secondUnDisable(){
+//   secondPreloader.classList.remove('active');
+//   secondBtn.classList.remove('dis');
+// }
