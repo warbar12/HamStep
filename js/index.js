@@ -208,58 +208,58 @@ addImg()
 
 /*--------------------------------------------------------------------------*/
 // добаление рабочих кнопок + прелоадер
+
+function unDisable(){
+  document.querySelector('.preloader').classList.remove('active');
+  loadImg.classList.remove('dis');
+}
+
+
+function heandelAddImg(){
 const activeLinck = document.querySelectorAll('.galery');
 
-const loadImg = document.querySelectorAll('.btn');
-const firstBtn = loadImg[0];
-const preloader = document.querySelectorAll('.preloader');
-const firstPreloader = preloader[0];
-
-// работа с firstBtn
-let firstBtnClicks = 0;
-
-firstBtn.addEventListener('click', pres =>{
-  firstHeandelAddImg();
-
-  if(pres) firstBtnClicks ++;
-  if(firstBtnClicks === 2) firstBtn.classList.add('none')
-
-  firstPreloader.classList.add('active')
-  firstBtn.classList.add('dis')
-
-  setTimeout(firstUnDisable, 3000);
-});
-
-function firstHeandelAddImg(){
- 
-  activeLinck.forEach(item => {
+activeLinck.forEach(item => {
 
     if(item.classList.contains('active')){
-        let numberImg = 0;
+      let numberImg = 0;
 
-        function urlImg(){
-          numberImg++;
-          console.log(numberImg);
-          const getUrlImg =  `<div class="galery_mask">
-          <img class="foto" src="./img/dopImg/${numberImg}.jpeg"  alt="${numberImg}.png">
-          <div class="galery_mask_hover">
-          <img class="hover_img" src="./img/icon2.png" alt="icon2.png">
-          <h4 class="info_foto_title">creative design</h4>
-          <p class="info_foto_name">Uploaded Image</p>
-          </div>
-          </div> `;
-          item.insertAdjacentHTML('beforeend', getUrlImg);
-        };
-      };
-      const avtoRun = setInterval(urlImg, 250);
-      setTimeout(() => { clearInterval(avtoRun)}, 3000);
-    });
-  };
+      function urlImg(){
+        numberImg++;
+        const getUrlImg =  `<div class="galery_mask">
+        <img class="foto" src="./img/dopImg/${numberImg}.jpeg"  alt="${numberImg}.png">
+        <div class="galery_mask_hover">
+        <img class="hover_img" src="./img/icon2.png" alt="icon2.png">
+        <h4 class="info_foto_title">creative design</h4>
+        <p class="info_foto_name">Uploaded Image</p>
+        </div>
+        </div> `;
+        item.insertAdjacentHTML('beforeend', getUrlImg);
+      }
+    };
+    const avtoRun = setInterval(urlImg, 500);
+    setTimeout(() => { clearInterval(avtoRun)}, 6000);
+ });
+};
+
+
+const loadImg = document.querySelector('.btn');
+let clicks  = 0;
+loadImg.addEventListener('click', e => {
+  if(e) clicks ++;
+
+  document.querySelector('.preloader').classList.add('active')
+  loadImg.classList.add('dis')
+
+  heandelAddImg()
+  setTimeout(unDisable, 6000);
+
+  if(clicks === 2) loadImg.classList.add('none')
+})
 
 // делать кнопку не кликабельной 
 function firstUnDisable(){
-  firstPreloader.classList.remove('active');
-  firstBtn.classList.remove('dis');
+  preloader.classList.remove('active');
+  loadImg.classList.remove('dis');
 }
 
 
