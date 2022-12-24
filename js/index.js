@@ -150,6 +150,7 @@ hoverBlock.forEach(item => {
 });
 
 /* --------------------------------People Say slider-------------------------------- */
+
 let sIndex = 1;
 
 function slider(n){
@@ -184,7 +185,6 @@ showSlides(sIndex);
 
 /*--------------------------------------------------------------------------*/
 
-
 const masGred = document.getElementById('mas_gall');
 
 let numberMasonry = 0;
@@ -212,12 +212,8 @@ const activeLinck = document.querySelectorAll('.galery');
 
 const loadImg = document.querySelectorAll('.btn');
 const firstBtn = loadImg[0];
-const secondBtn = loadImg[1];
-
 const preloader = document.querySelectorAll('.preloader');
 const firstPreloader = preloader[0];
-const secondPreloader = preloader[1];
-
 
 // работа с firstBtn
 let firstBtnClicks = 0;
@@ -260,49 +256,10 @@ function firstHeandelAddImg(){
     });
   };
 
-
-// работа с secondBtn
-// let secondBtnClicks  = 0;
-
-// secondBtn.addEventListener('click', pres =>{
-//   if(pres) secondBtnClicks ++;
-
-//   secondPreloader.classList.add('active')
-//   secondBtn.classList.add('dis')
-
-//   secondHeandelAddImg()
-//   setTimeout(secondUnDisable, 6000);
-
-//   const avtoRun = setInterval(secondHeandelAddImg, 500);
-//   setTimeout(() => { clearInterval(avtoRun)}, 6000);
-
-//   if(secondBtnClicks === 2) secondBtn.classList.add('none')
-
-// });
-
-// let secondHeandelAddImgCounter = 0;
-// function secondHeandelAddImg(){
-//   secondHeandelAddImgCounter++;
-
-//   const img = `<div class="item_masonry size4">
-//     <img src="./img/bestImages/${secondHeandelAddImgCounter}.jpg" alt="bestImages-${secondHeandelAddImgCounter}">
-//     <div class="masonry_hover">
-//         <a href="#">
-//           <i class="fa fa-search fa-2" ></i>
-//         </a>
-//     </div>
-//   </div>`
-//   masGred.insertAdjacentHTML("beforeend", img)
-// };
-
-
 // делать кнопку не кликабельной 
 function firstUnDisable(){
   firstPreloader.classList.remove('active');
   firstBtn.classList.remove('dis');
 }
 
-// function secondUnDisable(){
-//   secondPreloader.classList.remove('active');
-//   secondBtn.classList.remove('dis');
-// }
+
