@@ -4,7 +4,6 @@ const link = [...navlist.children];
 const blockInfo = document.querySelector('.servide_work');
 const info = [...blockInfo.children];
 
-
 info.forEach((item, i) => {
   if(i === 0) item.classList.add("active");
 })
@@ -16,7 +15,6 @@ link.forEach((item, index) => {
 info.forEach((item, index) => {
   item.setAttribute("data-set",`${index}`);
 });
-
 
 navlist.addEventListener('click', event => {
   if(event.target !== navlist){
